@@ -226,7 +226,7 @@ async def del_file_info(bot, message):
     matches_link = pattern_link.search(str(message.text))
     p_id = matches_link.group(1)
     Link = Get_Link(p_id)
-    tit = seedr.get_file(p_id)["title"]
+    tit = seedr.get_file(p_id)["name"]
     await bot.send_video(
                     chat_id=message.message.chat.id,
                     video=Link,
