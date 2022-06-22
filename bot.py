@@ -198,6 +198,7 @@ async def get_file_info(bot, message):
     matches_link = pattern_link.search(str(message.text))
     p_id = matches_link.group(1)
     texttt = resualt_text(p_id)
+   
     await message.reply_text(texttt)
 
 @bot.on_message(filters.private & filters.regex(pattern=".*del.*"))
@@ -214,7 +215,23 @@ async def del_file_info(bot, message):
     pattern_link = re.compile(r'^\/dl_(.*)')
     matches_link = pattern_link.search(str(message.text))
     p_id = matches_link.group(1)
-    
+    Link = Get_Link(p_id)
+    tit = seedr.get_file(p_id)["title"]
+    await bot.send_video(
+                    chat_id=message.message.chat.id,
+                    video=Link,
+                    caption=tit,
+                    parse_mode="HTML",
+                    
+                    supports_streaming=True,
+                    reply_to_message_id=message.message.reply_to_message.message_id,
+                    progress=progress_for_pyrogram,
+                    progress_args=(
+                        "start",
+                        message.message,
+                        start_time
+                    )
+                )
 
 @bot.on_message(filters.private & filters.regex(pattern=".*magnet.*"))
 async def add_file(bot, message):
