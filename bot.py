@@ -234,10 +234,10 @@ async def get_file_info(bot, message):
 
 
 @bot.on_message(filters.private & filters.regex(pattern=".*download.*"))
-async def dl_filxde_info(bot, message):
-    await message.reply_text('کمی صبر کنید :)')
+async def dl_filxde_info(bot, messages):
+    await messages.reply_text('کمی صبر کنید :)')
     pattern_link = re.compile(r'^\/download_(.*)')
-    matches_link = pattern_link.search(str(message.text))
+    matches_link = pattern_link.search(str(messages.text))
     p_id = matches_link.group(1)
     link = Get_Link(p_id)
     name = seedr.get_file(p_id)["name"]
@@ -247,19 +247,24 @@ async def dl_filxde_info(bot, message):
         print("check")
         #await bot.message.edit('در حال دانلود ...')
         print(name)
-        with open(name, 'wb') as f:
+        """with open(name, 'wb') as f:
             print("okvvvvvvvvvvvvvvvvvvvv check") 
             response = requests.get(link, stream=True)
             print(response) 
             f.write(response.content)
-        f.close
+        f.close"""
+        import wget
+
+        #url = "https://www.python.org/static/img/python-logo@2x.png"
+
+        wget.download(link, name)
         print("ok check") 
         
         try :
             #await bot.send_message(message.chat.id , "سلام \n شروع مجدد : /start\n دیدن پوشه ها : /showfile")
 
             #await message.reply_text(name)
-            await message.message.reply_video(name, caption='دانلود شده توسط : ')
+            await messages.message.reply_video(name, caption='دانلود شده توسط : ')
 
             #await bot.send_video(message.chat.id , name, caption='دانلود شده توسط : @kenzomovie')
             """await bot.send_video(
@@ -283,7 +288,7 @@ async def dl_filxde_info(bot, message):
                 )"""
             os.remove(name)
         except:
-            await message.reply_text(link)
+            await messages.reply_text(link)
             os.remove(name)
         #await message.reply_text(link)
         #os.remove(name)
@@ -291,7 +296,7 @@ async def dl_filxde_info(bot, message):
         print("ok send shod")
     except:
         print("nemisheeeeeee")
-        await message.reply_text(link+"    \n*\n   "+name)
+        await messages.reply_text(link+"    \n*\n   "+name)
 
     
     #await message.reply_text(link+"    ///   "+name)
