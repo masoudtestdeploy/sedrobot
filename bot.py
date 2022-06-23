@@ -319,8 +319,8 @@ async def del_file_info(bot, message):
                     #height=height,
                     thumb="https://cdn.pixabay.com/photo/2013/08/29/02/47/eiffel-tower-176935_960_720.jpg",
                     supports_streaming=True,
-                    reply_to_message_id=message.reply_to_message.message_id,
-                    progress=progress_for_pyrogram,
+                    #reply_to_message_id=message.reply_to_message.message_id,
+                    #progress=progress_for_pyrogram,
                      )
 
     #await bot.send_video(message.chat.id, "test.mp4", caption="video caption")
