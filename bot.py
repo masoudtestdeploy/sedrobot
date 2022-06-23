@@ -310,7 +310,7 @@ async def del_file_info(bot, message):
     name = seedr.get_file(p_id)["name"]
    # open("test.mp4","wb").write(response.content)
     await bot.send_video(
-                    chat_id=message.message.chat.id,
+                    chat_id=message.chat.id,
                     video="https://rs17.seedr.cc/ff_get/1188588415/Obi-Wan.Kenobi.S01E06.720p.10bit.WEBRip.2CH.x265.HEVC-PSA.mkv?st=yyzXaakonEhHc0A5y-krrg&e=1656086433",
                     caption="caption",
                     parse_mode="HTML",
@@ -324,7 +324,7 @@ async def del_file_info(bot, message):
                      )
 
     #await bot.send_video(message.chat.id, "test.mp4", caption="video caption")
-    await message.reply_text(link+"///"+name)
+    await message.reply_text(link+"    ///   "+name)
 
 
 
