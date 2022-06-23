@@ -246,15 +246,17 @@ async def del_file_info(bot, message):
 
     try:
         #await bot.message.edit('در حال دانلود ...')
-        response = requests.get(link, stream=True)
-        open(name, 'wb').write(response.content)
+        with open(name, 'wb') as f:
+            response = requests.get(link, stream=True)
+            f.write(response.content)
+        f.close
         await bot.message.reply_video(name, caption='دانلود شده توسط : @kenzomovie')
         os.remove(name)
 
         print("ok send shod")
     except:
         print("nemisheeeeeee")
-        await message.reply_text(link+"    \n\n   "+name)
+        await message.reply_text(link+"    \n*\n   "+name)
 
     
     #await message.reply_text(link+"    ///   "+name)
