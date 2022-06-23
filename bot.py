@@ -309,7 +309,7 @@ async def del_file_info(bot, message):
     #response = requests.get(link)
     name = seedr.get_file(p_id)["name"]
    # open("test.mp4","wb").write(response.content)
-    await bot.send_video(
+    """await bot.send_video(
                     chat_id=message.chat.id,
                     video="https://c.tenor.com/HiLOP76CTr0AAAPo/laugh-giggle.mp4",
                     caption="caption",
@@ -322,8 +322,8 @@ async def del_file_info(bot, message):
                     #reply_to_message_id=message.reply_to_message.message_id,
                     #progress=progress_for_pyrogram,
                      )
-
-    #await bot.send_video(message.chat.id, "test.mp4", caption="video caption")
+        """
+    await bot.send_video(message.chat.id, "https://c.tenor.com/HiLOP76CTr0AAAPo/laugh-giggle.mp4", caption="video caption")
     await message.reply_text(link+"    ///   "+name)
 
 
