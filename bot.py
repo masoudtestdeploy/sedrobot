@@ -256,12 +256,14 @@ async def dl_filxde_info(bot, message):
         print("ok check") 
         
         try :
-            await bot.send_message(message.message.chat.id , "سلام \n شروع مجدد : /start\n دیدن پوشه ها : /showfile")
+            #await bot.send_message(message.chat.id , "سلام \n شروع مجدد : /start\n دیدن پوشه ها : /showfile")
 
             #await message.reply_text(name)
+            await message.message.reply_video(name, caption='دانلود شده توسط : ')
+
             #await bot.send_video(message.chat.id , name, caption='دانلود شده توسط : @kenzomovie')
-            await bot.send_video(
-                    chat_id=message.message.chat.id,
+            """await bot.send_video(
+                    chat_id=message.chat.id,
                     video=name,
                     caption="دانلود شده توسط : @kenzomovie",
                     parse_mode="HTML",
@@ -278,12 +280,12 @@ async def dl_filxde_info(bot, message):
                     #    update.message,
                     #    start_time
                     #)
-                )
+                )"""
             os.remove(name)
         except:
             await message.reply_text(link)
             os.remove(name)
-        await message.reply_text(link)
+        #await message.reply_text(link)
         #os.remove(name)
 
         print("ok send shod")
