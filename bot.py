@@ -231,12 +231,10 @@ async def get_file_info(bot, message):
     texttt = resualt_text(p_id)
     await message.reply_text(texttt)
 
-async def progress(current, total):
-    print(f"{current * 100 / total:.1f}%")
 
 
 @bot.on_message(filters.private & filters.regex(pattern=".*download.*"))
-async def del_file_info(bot, message):
+async def dl_filxde_info(bot, message):
     await message.reply_text('کمی صبر کنید :)')
     pattern_link = re.compile(r'^\/download_(.*)')
     matches_link = pattern_link.search(str(message.text))
@@ -247,7 +245,7 @@ async def del_file_info(bot, message):
     try:
 
         print("check")
-        #await bot.message.edit('در حال دانلود ...')
+        await bot.message.edit('در حال دانلود ...')
         print(name)
         with open(name, 'wb') as f:
             print("okvvvvvvvvvvvvvvvvvvvv check") 
@@ -255,7 +253,7 @@ async def del_file_info(bot, message):
             f.write(response.content)
         f.close
         print("ok check") 
-        await message.reply_video(name, caption='دانلود شده توسط : @kenzomovie')
+        await bot.send_video(message.chat.id , name, caption='دانلود شده توسط : @kenzomovie')
         os.remove(name)
 
         print("ok send shod")
