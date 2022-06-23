@@ -245,12 +245,15 @@ async def del_file_info(bot, message):
     name = seedr.get_file(p_id)["name"]
 
     try:
+
+        print("check")
         #await bot.message.edit('در حال دانلود ...')
+        print(name)
         with open(name, 'wb') as f:
             response = requests.get(link, stream=True)
             f.write(response.content)
         f.close
-        await bot.message.reply_video(name, caption='دانلود شده توسط : @kenzomovie')
+        await message.reply_video(name, caption='دانلود شده توسط : @kenzomovie')
         os.remove(name)
 
         print("ok send shod")
