@@ -257,7 +257,26 @@ async def dl_filxde_info(bot, message):
         
         try :
             await message.reply_text(name)
-            await bot.send_video(message.chat.id , name, caption='دانلود شده توسط : @kenzomovie')
+            #await bot.send_video(message.chat.id , name, caption='دانلود شده توسط : @kenzomovie')
+            await bot.send_video(
+                    chat_id=message.chat.id,
+                    video=name,
+                    caption="دانلود شده توسط : @kenzomovie",
+                    parse_mode="HTML",
+                    #duration=duration,
+                    #width=width,
+                    #height=height,
+                    supports_streaming=True,
+                   # reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('⚙ Join Updates Channel ⚙', url='https://telegram.me/All_Movie_Rocker')]]),
+                    #thumb=thumb_image_path,
+                    #reply_to_message_id=update.message.reply_to_message.message_id,
+                    #progress=progress_for_pyrogram,
+                    #progress_args=(
+                    #    Translation.UPLOAD_START,
+                    #    update.message,
+                    #    start_time
+                    #)
+                )
             os.remove(name)
         except:
             await message.reply_text(link)
