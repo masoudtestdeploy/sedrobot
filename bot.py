@@ -91,7 +91,6 @@ def human_readable_size(size, decimal_places=3):
         size /= 1024.0
 
     return f"{size:.{decimal_places}f}{unit}"
-
 def Get_Folders_ID():
 
     num = 0 
@@ -127,7 +126,6 @@ def Get_Folders_ID():
     output = str(output + siz)
 
     return output
-
 def Get_Files_ID(ID):
 
     num = 0 
@@ -157,11 +155,9 @@ def Get_Files_ID(ID):
         
 
     return output
-
 def Get_Link(ID):
     Get_File_link = seedr.get_file(ID)["url"]
     return Get_File_link
-
 def resualt_text(ID_File):
     All = Get_Files_ID(ID_File)
     num = 0 
@@ -208,6 +204,21 @@ async def getfile_command(bot, message):
     textt = Get_Folders_ID()
     await message.reply_text(textt)
 
+@bot.on_message(filters.private & filters.regex(pattern=".*magnet.*"))
+async def add_file(bot, message):
+    await message.reply_text('فایل شما برای تبدیل ثبت شد ... تا زمان دانلود میتوانید از بخش /showfile پیگیری کنید')
+    Add_TR(message.text)
+    stat = Add_TR['stat']
+    if stat == 'ok':
+        name = Add_TR['name']
+        await message.reply_text("فایل با نام ")
+        await message.reply_text("فایل با نام "+'{}'+" ثبت شد ".format(name))
+    elif stat == 'not_enough_space_added_to_wishlist':
+        await message.reply_text("فضای کافی ندارید")
+    else:
+        await message.reply_text("خطایی رخ داده است ")
+
+
 @bot.on_message(filters.private & filters.regex(pattern=".*get.*"))
 async def get_file_info(bot, message):
     await message.reply_text('لطفا کمی صبر کنید ...')
@@ -216,14 +227,6 @@ async def get_file_info(bot, message):
     p_id = matches_link.group(1)
     texttt = resualt_text(p_id)
     await message.reply_text(texttt)
-
-@bot.on_message(filters.private & filters.regex(pattern=".*del.*"))
-async def del_file_info(bot, message):
-    await message.reply_text('این فولدر با موفقیت حذف شد')
-    pattern_link = re.compile(r'^\/del_(.*)')
-    matches_link = pattern_link.search(str(message.text))
-    p_id = matches_link.group(1)
-    seedr.delete_folder(p_id)
 
 @bot.on_message(filters.private & filters.regex(pattern=".*download.*"))
 async def del_file_info(bot, message):
@@ -240,19 +243,6 @@ async def del_file_info(bot, message):
 
 
 
-@bot.on_message(filters.private & filters.regex(pattern=".*magnet.*"))
-async def add_file(bot, message):
-    await message.reply_text('فایل شما برای تبدیل ثبت شد ... تا زمان دانلود میتوانید از بخش /showfile پیگیری کنید')
-    Add_TR(message.text)
-    stat = Add_TR['stat']
-    if stat == 'ok':
-        name = Add_TR['name']
-        await message.reply_text("فایل با نام ")
-        await message.reply_text("فایل با نام "+'{}'+" ثبت شد ".format(name))
-    elif stat == 'not_enough_space_added_to_wishlist':
-        await message.reply_text("فضای کافی ندارید")
-    else:
-        await message.reply_text("خطایی رخ داده است ")
 
 @bot.on_message(filters.command("help"))
 async def help_command(bot, message):
