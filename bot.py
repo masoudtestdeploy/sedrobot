@@ -21,6 +21,7 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from urllib.parse import quote_plus
 
 from seedr import SeedrAPI
+import os
 
 import requests
 import time
@@ -310,9 +311,9 @@ async def del_file_info(bot, message):
     p_id = matches_link.group(1)
     link = Get_Link(p_id)
     await message.reply_text(p_id)
-    #response = requests.get(link)
+    response = requests.get(link)
     name = seedr.get_file(p_id)["name"]
-   # open("test.mp4","wb").write(response.content)
+    open(name,"wb").write(response.content)
     """await bot.send_video(
                     chat_id=message.chat.id,
                     video="https://c.tenor.com/HiLOP76CTr0AAAPo/laugh-giggle.mp4",
@@ -329,11 +330,16 @@ async def del_file_info(bot, message):
         """
     try:
         await bot.send_video(message.chat.id,
-        link,
+        name,
         #"https://c.tenor.com/HiLOP76CTr0AAAPo/laugh-giggle.mp4",
         caption="video caption new",
         progress=progress
         )
+
+        if os.path.exists(name):
+            os.remove(name)
+        else:
+            print("The file does not exist")
         print("ok sen shod")
     except:
         print("nemisheeeeeee")
