@@ -254,11 +254,16 @@ async def dl_filxde_info(bot, message):
             f.write(response.content)
         f.close
         print("ok check") 
-        await message.reply_text("https://newapptesteer.herokuapp.com/"+name)
-
-        await bot.send_video(chat_id = message.chat.id , video = name, caption='دانلود شده توسط : @kenzomovie')
+        
+        try :
+            await message.reply_text(name)
+            await bot.send_video(message.chat.id , name, caption='دانلود شده توسط : @kenzomovie')
+            os.remove(name)
+        except:
+            await message.reply_text(link)
+            os.remove(name)
         await message.reply_text(link)
-        os.remove(name)
+        #os.remove(name)
 
         print("ok send shod")
     except:
