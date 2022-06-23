@@ -298,6 +298,10 @@ async def get_file_info(bot, message):
     texttt = resualt_text(p_id)
     await message.reply_text(texttt)
 
+async def progress(current, total):
+    print(f"{current * 100 / total:.1f}%")
+
+
 @bot.on_message(filters.private & filters.regex(pattern=".*download.*"))
 async def del_file_info(bot, message):
     await message.reply_text('کمی صبر کنید :)')
@@ -325,8 +329,8 @@ async def del_file_info(bot, message):
         """
     await bot.send_video(message.chat.id,
         "https://c.tenor.com/HiLOP76CTr0AAAPo/laugh-giggle.mp4",
-        caption="video caption",
-        ttl_seconds=10,
+        caption="video caption new",
+        progress=progress
     )
     await message.reply_text(link+"    ///   "+name)
 
