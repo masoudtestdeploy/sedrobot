@@ -245,7 +245,7 @@ async def dl_filxde_info(bot, message):
     try:
 
         print("check")
-        await bot.message.edit('در حال دانلود ...')
+        #await bot.message.edit('در حال دانلود ...')
         print(name)
         with open(name, 'wb') as f:
             print("okvvvvvvvvvvvvvvvvvvvv check") 
