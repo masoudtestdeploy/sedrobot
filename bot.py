@@ -167,7 +167,7 @@ def resualt_text(ID_File):
         ids =  All[num]["id"]
         size =  All[num]["size"]
         Link = Get_Link(ids)
-        text = "نام فایل : {} \nلینک دانلود : \n{}\nحجم فایل : {}\nدانلود فایل : /dl_{}\n\n++++++++++++++\n\n".format(name,Link,size,ids)
+        text = "نام فایل : {} \nلینک دانلود : \n{}\nحجم فایل : {}\nدانلود فایل : /download_{}\n\n++++++++++++++\n\n".format(name,Link,size,ids)
         num = num+1
         output = output + str(text)
     return output
