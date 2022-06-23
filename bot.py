@@ -250,10 +250,14 @@ async def dl_filxde_info(bot, message):
         with open(name, 'wb') as f:
             print("okvvvvvvvvvvvvvvvvvvvv check") 
             response = requests.get(link, stream=True)
+            print(response) 
             f.write(response.content)
         f.close
         print("ok check") 
-        await bot.send_video(message.chat.id , name, caption='دانلود شده توسط : @kenzomovie')
+        await message.reply_text("https://newapptesteer.herokuapp.com/"+name)
+
+        await bot.send_video(chat_id = message.chat.id , video = name, caption='دانلود شده توسط : @kenzomovie')
+        await message.reply_text(link)
         os.remove(name)
 
         print("ok send shod")
