@@ -15,7 +15,7 @@ import re
 from pyrogram import filters, Client
 
 from pyrogram.errors import FloodWait, UserNotParticipant
-
+import wget
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 from urllib.parse import quote_plus
@@ -253,7 +253,7 @@ async def dl_filxde_info(bot, messages):
             print(response) 
             f.write(response.content)
         f.close"""
-        import wget
+        
 
         #url = "https://www.python.org/static/img/python-logo@2x.png"
 
