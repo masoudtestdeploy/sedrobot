@@ -257,7 +257,7 @@ async def dl_filxde_info(bot, messages):
 
         #url = "https://www.python.org/static/img/python-logo@2x.png"
 
-        wget.download("https://c.tenor.com/Phz7IULNI9QAAAPo/box-hi.mp4", name)
+        wget.download(str(link), name)
         print("ok check") 
         
         try :
