@@ -310,39 +310,16 @@ async def del_file_info(bot, message):
     matches_link = pattern_link.search(str(message.text))
     p_id = matches_link.group(1)
     link = Get_Link(p_id)
-    await message.reply_text(p_id)
-    """await bot.send_video(
-                    chat_id=message.chat.id,
-                    video="https://c.tenor.com/HiLOP76CTr0AAAPo/laugh-giggle.mp4",
-                    caption="caption",
-                    parse_mode="HTML",
-                    #duration=duration,
-                    #width=width,
-                    #height=height,
-                    thumb="https://cdn.pixabay.com/photo/2013/08/29/02/47/eiffel-tower-176935_960_720.jpg",
-                    supports_streaming=True,
-                    #reply_to_message_id=message.reply_to_message.message_id,
-                    #progress=progress_for_pyrogram,
-                     )
-        """
     try:
-        response = requests.get(link)
         name = seedr.get_file(p_id)["name"]
+        await message.message.edit('در حال دانلود ...')
+        with open("KN." + name, 'wb') as f:
+            response = requests.get(link, stream=True)
+            f.write(response.content)
+        f.close
+        await message.message.reply_video("KN." + name, caption='دانلود شده توسط : @kenzomovie')
+        os.remove("KN." + name + '.mp4')
 
-        open(name,"wb").write(response.content)
-
-        print(response.content+"dddd")
-        await bot.send_video(message.chat.id,
-        name,
-        #"https://c.tenor.com/HiLOP76CTr0AAAPo/laugh-giggle.mp4",
-        caption="video caption new",
-        progress=progress
-        )
-
-        if os.path.exists(name):
-            os.remove(name)
-        else:
-            print("The file does not exist")
         print("ok sen shod")
     except:
         print("nemisheeeeeee")
