@@ -264,7 +264,7 @@ async def dl_filxde_info(bot, messages):
             #await bot.send_message(message.chat.id , "سلام \n شروع مجدد : /start\n دیدن پوشه ها : /showfile")
 
             #await message.reply_text(name)
-            await messages.message.reply_video(name, caption='دانلود شده توسط : ')
+            await messages.reply_video(name, caption='دانلود شده توسط : ')
 
             #await bot.send_video(message.chat.id , name, caption='دانلود شده توسط : @kenzomovie')
             """await bot.send_video(
@@ -287,16 +287,17 @@ async def dl_filxde_info(bot, messages):
                     #)
                 )"""
             os.remove(name)
+            print("ok send shod")
         except:
-            await messages.reply_text(link)
+            await messages.reply_text("nashod")
             os.remove(name)
         #await message.reply_text(link)
         #os.remove(name)
 
-        print("ok send shod")
+        
     except:
         print("nemisheeeeeee")
-        await messages.reply_text(link+"    \n*\n   "+name)
+        await messages.reply_text(link+"    \nnemisheeeeeee\n   "+name)
 
     
     #await message.reply_text(link+"    ///   "+name)
