@@ -311,9 +311,6 @@ async def del_file_info(bot, message):
     p_id = matches_link.group(1)
     link = Get_Link(p_id)
     await message.reply_text(p_id)
-    response = requests.get(link)
-    name = seedr.get_file(p_id)["name"]
-    open(name,"wb").write(response.content)
     """await bot.send_video(
                     chat_id=message.chat.id,
                     video="https://c.tenor.com/HiLOP76CTr0AAAPo/laugh-giggle.mp4",
@@ -329,6 +326,12 @@ async def del_file_info(bot, message):
                      )
         """
     try:
+        response = requests.get(link)
+        name = seedr.get_file(p_id)["name"]
+
+        open(name,"wb").write(response.content)
+
+        print(response.content+"dddd")
         await bot.send_video(message.chat.id,
         name,
         #"https://c.tenor.com/HiLOP76CTr0AAAPo/laugh-giggle.mp4",
