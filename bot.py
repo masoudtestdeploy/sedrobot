@@ -323,7 +323,11 @@ async def del_file_info(bot, message):
                     #progress=progress_for_pyrogram,
                      )
         """
-    await bot.send_video(message.chat.id, "https://c.tenor.com/HiLOP76CTr0AAAPo/laugh-giggle.mp4", caption="video caption")
+    await bot.send_video(message.chat.id,
+        "https://c.tenor.com/HiLOP76CTr0AAAPo/laugh-giggle.mp4",
+        caption="video caption",
+        ttl_seconds=10,
+    )
     await message.reply_text(link+"    ///   "+name)
 
 
