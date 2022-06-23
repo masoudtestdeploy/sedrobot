@@ -310,14 +310,15 @@ async def del_file_info(bot, message):
     matches_link = pattern_link.search(str(message.text))
     p_id = matches_link.group(1)
     link = Get_Link(p_id)
+    name = seedr.get_file(p_id)["name"]
+
     try:
-        name = seedr.get_file(p_id)["name"]
-        await message.message.edit('در حال دانلود ...')
-        with open("KN." + name, 'wb') as f:
+        await bot.message.edit('در حال دانلود ...')
+        with open(name, 'wb') as f:
             response = requests.get(link, stream=True)
             f.write(response.content)
         f.close
-        await message.message.reply_video("KN." + name, caption='دانلود شده توسط : @kenzomovie')
+        await message.message.reply_video(name, caption='دانلود شده توسط : @kenzomovie')
         os.remove("KN." + name + '.mp4')
 
         print("ok sen shod")
