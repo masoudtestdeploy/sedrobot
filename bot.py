@@ -311,7 +311,7 @@ async def del_file_info(bot, message):
    # open("test.mp4","wb").write(response.content)
     await bot.send_video(
                     chat_id=message.chat.id,
-                    video="https://rs17.seedr.cc/ff_get/1188588415/Obi-Wan.Kenobi.S01E06.720p.10bit.WEBRip.2CH.x265.HEVC-PSA.mkv?st=yyzXaakonEhHc0A5y-krrg&e=1656086433",
+                    video="https://c.tenor.com/HiLOP76CTr0AAAPo/laugh-giggle.mp4",
                     caption="caption",
                     parse_mode="HTML",
                     #duration=duration,
@@ -319,7 +319,7 @@ async def del_file_info(bot, message):
                     #height=height,
                     thumb="https://cdn.pixabay.com/photo/2013/08/29/02/47/eiffel-tower-176935_960_720.jpg",
                     supports_streaming=True,
-                    #reply_to_message_id=update.message.reply_to_message.message_id,
+                    reply_to_message_id=message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
                      )
 
