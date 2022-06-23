@@ -328,7 +328,8 @@ async def del_file_info(bot, message):
                      )
         """
     await bot.send_video(message.chat.id,
-        "https://c.tenor.com/HiLOP76CTr0AAAPo/laugh-giggle.mp4",
+        link,
+        #"https://c.tenor.com/HiLOP76CTr0AAAPo/laugh-giggle.mp4",
         caption="video caption new",
         progress=progress
     )
