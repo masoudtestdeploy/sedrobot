@@ -236,10 +236,10 @@ async def del_file_info(bot, message):
     p_id = matches_link.group(1)
     link = Get_Link(p_id)
     await message.reply_text(p_id)
-    #response = requests.get(link)
-    #name = seedr.get_file(p_id)["name"]
-    #open(name,"wb").write(response.content)
-    await bot.send_video(message.chat.id, link, caption="video caption")
+    response = requests.get(link)
+    name = seedr.get_file(p_id)["name"]
+    open("test.mp4","wb").write(response.content)
+    await bot.send_video(message.chat.id, "test.mp4", caption="video caption")
     await message.reply_text(link)
 
 
