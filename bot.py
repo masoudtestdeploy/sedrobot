@@ -256,10 +256,12 @@ async def dl_filxde_info(bot, message):
         print("ok check") 
         
         try :
-            await message.reply_text(name)
+            await bot.send_message(message.message.chat.id , "سلام \n شروع مجدد : /start\n دیدن پوشه ها : /showfile")
+
+            #await message.reply_text(name)
             #await bot.send_video(message.chat.id , name, caption='دانلود شده توسط : @kenzomovie')
             await bot.send_video(
-                    chat_id=message.chat.id,
+                    chat_id=message.message.chat.id,
                     video=name,
                     caption="دانلود شده توسط : @kenzomovie",
                     parse_mode="HTML",
